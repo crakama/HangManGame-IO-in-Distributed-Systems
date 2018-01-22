@@ -10,6 +10,8 @@ public enum CmdType {
      * second is port number.
      */
     CONNECT,
+
+    PLAY,
     /**
      * Leave the chat application.
      */

@@ -25,7 +25,7 @@ public class ServerCommHandler {
 
     }
 
-    public void startGame() throws IOException {
+    public void initialiseGame() throws IOException {
         sendMsg(MsgType.START,null);
     }
     public void sendGuess(String guess) throws IOException {
@@ -37,6 +37,10 @@ public class ServerCommHandler {
         writeData.writeObject(msg);
         writeData.flush();
         writeData.reset();
+    }
+
+    public void startGame() throws IOException {
+       sendMsg(MsgType.PLAY,null);
     }
 
 

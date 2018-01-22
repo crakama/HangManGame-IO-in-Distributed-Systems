@@ -6,7 +6,7 @@ public enum MsgType {
      * Start Command. A client sends this message to tell the game server its ready to play.
      */
     START,
-
+    PLAY,
     GUESS,
     RESPONSE,
 

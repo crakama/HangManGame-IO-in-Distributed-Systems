@@ -36,8 +36,13 @@ public class CmdInterpreter implements Runnable{
                         break;
                     case START:
                         if(this.isConnected = true){
-                            controller.startGame();
+                            controller.initialiseGame();
+                            Thread.sleep(1000);
+                            //outputHandler.informUser();
                         }
+                    case PLAY:
+                        controller.playGame();
+                        break;
                     case QUIT:
                         break;
                     default:

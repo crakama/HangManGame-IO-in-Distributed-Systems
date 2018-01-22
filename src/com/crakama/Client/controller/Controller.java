@@ -22,7 +22,16 @@ public class Controller {
         });
     }
 
-    public void startGame(){
+    public void initialiseGame(){
+        CompletableFuture.runAsync(()->{
+            try {
+                this.serverCommHandler.initialiseGame();
+            }catch (IOException e){
+                throw new UncheckedIOException(e);
+            }
+        });
+    }
+    public void playGame(){
         CompletableFuture.runAsync(()->{
             try {
                 this.serverCommHandler.startGame();
