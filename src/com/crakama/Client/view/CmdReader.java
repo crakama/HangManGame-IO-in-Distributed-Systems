@@ -1,10 +1,10 @@
 package com.crakama.Client.view;
 
-class CmdHandler {
+class CmdReader {
     private final String userCommand;
     CmdType cmd;
     private String [] requestToken;
-    CmdHandler(String userCommand){
+    CmdReader(String userCommand){
         this.userCommand = userCommand;
         readCommand(userCommand);
         readParameter(userCommand);

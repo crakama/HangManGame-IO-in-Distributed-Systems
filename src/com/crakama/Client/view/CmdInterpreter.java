@@ -23,12 +23,12 @@ public class CmdInterpreter implements Runnable{
         OutputHandler outputHandler = new ServerResponse();
         while (receivingCmds){
             try {
-                CmdHandler cmdHandler = new CmdHandler(requestHandler());
-                switch (cmdHandler.getCmd()){
+                CmdReader cmdReader = new CmdReader(requestHandler());
+                switch (cmdReader.getCmd()){
 
                     case CONNECT:
-                        controller.connect(cmdHandler.getParameters(1),
-                                Integer.parseInt(cmdHandler.getParameters(2)), new ServerResponse());
+                        controller.connect(cmdReader.getParameters(1),
+                                Integer.parseInt(cmdReader.getParameters(2)), new ServerResponse());
                         Thread.sleep(1000);
                         outputHandler.informUser();
                         this.isConnected = true;
@@ -46,7 +46,7 @@ public class CmdInterpreter implements Runnable{
                     case QUIT:
                         break;
                     default:
-                        controller.sendGuess(cmdHandler.getParameters(0));
+                        controller.sendGuess(cmdReader.getParameters(0));
                 }
 
             }catch (Exception e){
