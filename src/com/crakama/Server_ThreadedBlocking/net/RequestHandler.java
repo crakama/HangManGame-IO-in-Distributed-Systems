@@ -1,8 +1,7 @@
 package com.crakama.Server_ThreadedBlocking.net;
 
-import com.crakama.Server_ThreadedBlocking.ServeInterface;
-import com.crakama.Server_ThreadedBlocking.ServerInterfaceImpl;
-import com.crakama.Server_ThreadedBlocking.net.ClientCommHandler;
+import com.crakama.Server_ThreadedBlocking.service.ServeInterface;
+import com.crakama.Server_ThreadedBlocking.service.ServerInterfaceImpl;
 
 import java.io.IOException;
 import java.net.Socket;

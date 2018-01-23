@@ -1,29 +1,20 @@
-package com.crakama.Server_ThreadedBlocking;
+package com.crakama.Server_ThreadedBlocking.service;
 
+import com.crakama.Server_ThreadedBlocking.model.FileModel;
 import com.crakama.Server_ThreadedBlocking.net.ClientCommHandler;
-import com.crakama.common.MsgProtocol;
+import com.crakama.Server_ThreadedBlocking.service.ServeInterface;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Random;
 
-public class ServerInterfaceImpl  implements ServeInterface{
+public class ServerInterfaceImpl  implements ServeInterface {
 
     private int failedAttempts = 0;
     private int score = 0; // +=1 when user score and -=1 when server score
     private String currentWord;
     private String hiddenWord = new String();
     private LinkedList<String> guesses= new LinkedList<String>();
-    ArrayList<String> dictionary = new ArrayList<>();
-    private static FileReader fileReader;
-    private static BufferedReader bufferedFileReader;
-
-
 
     public ServerInterfaceImpl(){
 
@@ -41,8 +32,7 @@ public class ServerInterfaceImpl  implements ServeInterface{
                 "Every time you guess a character incorrectly, the number of trials will reduce by one \n" +
                 "Every time you guess a character correctly, the letter will be filled in all its positions in the word\n\n";
 
-        connectionHandler.sendResponse(welcomeMessage+"\nInitial Game Set Up" + informationMessage()+
-                                       "\n" +"Do you want to play the Game? \n"+"\nEnter PLAY or EXIT");
+        connectionHandler.sendResponse(welcomeMessage+"\nInitial Game Set Up" + informationMessage());
     }
 
 
@@ -109,11 +99,11 @@ public class ServerInterfaceImpl  implements ServeInterface{
      * Generates a word that client shall guess on
      */
     private void generateNewWord() throws IOException {
-
+        FileModel fileModel = new FileModel();
         guesses.clear(); //Empty guesses
-        readFile();
+        fileModel.readFile();
         failedAttempts = 0;
-        currentWord = pickWord();
+        currentWord = fileModel.pickWord();
         System.out.println("thread with id : "  + " get word: " + currentWord);
 
         /*** Hide characters in word***/
@@ -125,28 +115,9 @@ public class ServerInterfaceImpl  implements ServeInterface{
         /***                         ***/
     }
 
-    public void readFile() throws IOException {
-        try {
-            File inFile = new File("words.txt");
-            fileReader = new FileReader(inFile);
-            bufferedFileReader = new BufferedReader(fileReader);
-            String currentLine = bufferedFileReader.readLine();
-            while (currentLine != null) {
-                dictionary.add(currentLine);
-                currentLine = bufferedFileReader.readLine();
-            }
-            bufferedFileReader.close();
-            fileReader.close();
-        } catch(IOException e) {
-            System.out.println("Could not Read From File");
-        }
-    }
 
-    public String pickWord(){
-        Random rand = new Random();
-        int wordIndex = Math.abs(rand.nextInt()) % dictionary.size();
-        return dictionary.get(wordIndex);
-    }
+
+
 
     /**
      *

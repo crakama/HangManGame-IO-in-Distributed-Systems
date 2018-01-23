@@ -1,4 +1,4 @@
-package com.crakama.Server_ThreadedBlocking;
+package com.crakama.Server_ThreadedBlocking.service;
 
 import com.crakama.Server_ThreadedBlocking.net.ClientCommHandler;
 

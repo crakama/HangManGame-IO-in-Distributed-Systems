@@ -42,7 +42,6 @@ public class Controller {
     }
 
     public void sendGuess(String guess){
-        System.out.println("guess controler int"+guess);
         CompletableFuture.runAsync(()->{
             try {
                 this.serverCommHandler.sendGuess(guess);

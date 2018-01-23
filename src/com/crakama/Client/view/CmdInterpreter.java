@@ -46,7 +46,6 @@ public class CmdInterpreter implements Runnable{
                     case QUIT:
                         break;
                     default:
-                        System.out.println("guess cmd int");
                         controller.sendGuess(cmdHandler.getParameters(0));
                 }
 
