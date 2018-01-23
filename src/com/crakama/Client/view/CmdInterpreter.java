@@ -37,7 +37,7 @@ public class CmdInterpreter implements Runnable{
                     case START:
                         if(this.isConnected = true){
                             controller.initialiseGame();
-                            Thread.sleep(1000);
+                            //Thread.sleep(1000);
                             //outputHandler.informUser();
                         }
                     case PLAY:
@@ -46,6 +46,7 @@ public class CmdInterpreter implements Runnable{
                     case QUIT:
                         break;
                     default:
+                        System.out.println("guess cmd int");
                         controller.sendGuess(cmdHandler.getParameters(0));
                 }
 

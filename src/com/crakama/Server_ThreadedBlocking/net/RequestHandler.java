@@ -11,6 +11,7 @@ public class RequestHandler implements Runnable{
     private Socket clientSocket;
     private ClientCommHandler clientCommHandler;
     private ServeInterface serveInterface;
+    private boolean gameInitialised = false;
 
     public RequestHandler(ClientCommHandler threadedBlockingServer, Socket clientSocket) {
         this.clientSocket = clientSocket;
@@ -22,14 +23,19 @@ public class RequestHandler implements Runnable{
         while (clientSocket.isConnected()){
             try{
                 switch (clientCommHandler.readRequest().getMsgType()){
+
                     case START:
                         serveInterface.initialiseGame(clientCommHandler,clientSocket);
+                        gameInitialised = true;
                         break;
                     case PLAY:
-                        serveInterface.playGame(clientCommHandler);
+                        if(gameInitialised){
+                            serveInterface.playGame(clientCommHandler);
+                        }
                         break;
                     case STOP:
-                        processData();
+                        break;
+
                 }
             }catch (ClassNotFoundException|IOException e){
 
@@ -40,10 +46,4 @@ public class RequestHandler implements Runnable{
 
     }
 
-    private static String processData(){
-        return "Welcome, Game started";
-    }
-    private static String processGuess(){
-        return "Guess received";
-    }
 }

@@ -13,7 +13,7 @@ public enum CmdType {
 
     PLAY,
     /**
-     * Leave the chat application.
+     * Leave the application.
      */
     QUIT,
     /**

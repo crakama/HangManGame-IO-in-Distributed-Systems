@@ -29,6 +29,7 @@ public class ServerCommHandler {
         sendMsg(MsgType.START,null);
     }
     public void sendGuess(String guess) throws IOException {
+        System.out.println("guess Coom handler" + guess);
         sendMsg(MsgType.GUESS,guess);
     }
 
