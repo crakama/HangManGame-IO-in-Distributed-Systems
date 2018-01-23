@@ -40,7 +40,6 @@ public class RequestHandler implements Runnable{
             }catch (ClassNotFoundException|IOException e){
 
             }finally {
-                //clientSocket.close();
             }
         }
 
