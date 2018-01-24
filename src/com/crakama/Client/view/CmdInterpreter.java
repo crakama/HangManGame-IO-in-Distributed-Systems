@@ -1,6 +1,7 @@
 package com.crakama.Client.view;
 
 import com.crakama.Client.controller.Controller;
+import com.crakama.Client.net.OutputHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;

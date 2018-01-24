@@ -1,6 +1,6 @@
 package com.crakama.Client.controller;
 
-import com.crakama.Client.view.OutputHandler;
+import com.crakama.Client.net.OutputHandler;
 import com.crakama.Client.net.ServerCommHandler;
 
 import java.io.IOException;

@@ -1,6 +1,5 @@
 package com.crakama.Client.net;
 
-import com.crakama.Client.view.OutputHandler;
 import com.crakama.common.MsgProtocol;
 import com.crakama.common.MsgType;
 
